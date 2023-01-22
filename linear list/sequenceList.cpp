@@ -1,5 +1,5 @@
 #include <iostream>
-#include "define.h"
+#include "..\define.h"
 
 // 顺序表的存储结构
 #define MAXSIZE 100
