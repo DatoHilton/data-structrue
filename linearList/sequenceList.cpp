@@ -36,10 +36,7 @@ int GetLength(SqList L) {
 
 // 判断顺序表L是否为空
 bool IsEmpty(SqList L) {
-    if (L.length == 0)
-        return true;
-    else
-        return false;
+    return L.length == 0;
 }
 
 // 顺序表的取值
