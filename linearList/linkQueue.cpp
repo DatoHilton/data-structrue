@@ -13,10 +13,10 @@ typedef struct __LinkQueue {
 
 // 链队的初始化
 Status InitQueue(LinkQueue& Q) {
-    Q.front = Q.rear = new QNode;
+    Q.front = Q.rear = new QNode;  // 空队：首尾指针都指向头结点
     if (!Q.front)
         exit(OVERFLOW);
-    Q.front->next = NULL;
+    Q.front->next = nullptr;
     return OK;
 }
 
@@ -40,7 +40,7 @@ Status EnQueue(LinkQueue& Q, QElemType e) {
     if (!p)
         exit(OVERFLOW);
     p->data = e;
-    p->next = NULL;
+    p->next = nullptr;
     Q.rear->next = p;
     Q.rear = p;
     return OK;
@@ -53,14 +53,16 @@ Status DeQueue(LinkQueue& Q, QElemType& e) {
     QNode* p = Q.front->next;
     e = p->data;
     Q.front->next = p->next;
-    if (Q.rear == p)  // 如果最后一个元素出队
-        Q.rear = Q.front;
+    if (Q.rear == p)       // 如果恰好出队的是最后一个元素
+        Q.rear = Q.front;  // 还需要修改尾指针
     delete p;
     return OK;
 }
 
 // 取队头元素
-QElemType GetHead(LinkQueue Q) {
-    if (Q.front != Q.rear)  // 队非空
-        return Q.front->next->data;
+Status GetHead(LinkQueue Q, QElemType& e) {
+    if (Q.front == Q.rear)  // 队空
+        return ERROR;
+    e = Q.front->next->data;
+    return OK;
 }

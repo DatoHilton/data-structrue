@@ -9,20 +9,20 @@ typedef struct __StackNode {
 } StackNode, *LinkStack;
 
 /* 注：
-1.链表的头指针指向栈顶
+1.链表的头指针指向栈顶(a_n)
 2.链栈不需要头结点
 3.基本不存在栈满的情况
 4.空栈相当于头指针指向空 */
 
 // 链栈的初始化
 Status InitStack(LinkStack& S) {
-    S = NULL;
+    S = nullptr;  // 空栈：头指针（栈顶指针）置空
     return OK;
 }
 
 // 判断链栈是否为空
 Status IsEmpty(LinkStack S) {
-    return S == NULL;
+    return S == nullptr;
 }
 
 // 链栈的入栈
@@ -36,7 +36,7 @@ Status Push(LinkStack& S, SElemType e) {
 
 // 链栈的出栈
 Status Pop(LinkStack& S, SElemType& e) {
-    if (S == NULL)
+    if (S == nullptr)
         return ERROR;
     e = S->data;
     StackNode* p = S;
@@ -46,7 +46,9 @@ Status Pop(LinkStack& S, SElemType& e) {
 }
 
 // 取链栈的栈顶元素
-SElemType GetTop(LinkStack S) {
-    if (S != NULL)
-        return S->data;
+Status GetTop(LinkStack S, SElemType& e) {
+    if (S == nullptr)
+        return ERROR;
+    e = S->data;
+    return OK;
 }

@@ -19,7 +19,7 @@ p = p->next;  // p指向下一结点 */
 // 单链表的初始化
 Status InitList(LinkList& L) {
     L = new LNode;
-    L->next = NULL;
+    L->next = nullptr;
     return OK;
 }
 
@@ -51,7 +51,7 @@ Status ClearList(LinkList& L) {
         delete p;
         p = q;
     }
-    L->next = NULL;  // 头结点指针域置空
+    L->next = nullptr;  // 头结点指针域置空
     return OK;
 }
 
@@ -96,6 +96,7 @@ LNode* LocateElem(LinkList L, ElemType e) {
 Status ListInsert(LinkList& L, int i, ElemType e) {
     LNode* p = L;
     int j = 0;
+    // 寻找第i-1个结点
     while (p && (j < i - 1)) {
         p = p->next;
         j++;
@@ -113,6 +114,7 @@ Status ListInsert(LinkList& L, int i, ElemType e) {
 Status ListDelete(LinkList& L, int i, ElemType& e) {
     LNode* p = L;
     int j = 0;
+    // 寻找第i个结点，并令p指向其前驱
     while (p->next && (j < i - 1)) {
         p = p->next;
         j++;
@@ -129,7 +131,7 @@ Status ListDelete(LinkList& L, int i, ElemType& e) {
 // 前插法创建单链表
 void CreateList_H(LinkList& L, int n) {
     L = new LNode;
-    L->next = NULL;
+    L->next = nullptr;
     LNode* p;
     while (n--) {
         p = new LNode;
@@ -142,13 +144,13 @@ void CreateList_H(LinkList& L, int n) {
 // 后插法创建单链表
 void CreateList_R(LinkList& L, int n) {
     L = new LNode;
-    L->next = NULL;
+    L->next = nullptr;
     LNode* r = L;  // 尾指针r指向头结点
     LNode* p;
     while (n--) {
         p = new LNode;
         std::cin >> p->data;
-        p->next = NULL;
+        p->next = nullptr;
         r->next = p;
         r = p;  // 即r = r->next;
     }

@@ -41,7 +41,7 @@ Status DestroyStack(Sqstack& S) {
     if (S.base) {
         delete S.base;
         S.stackSize = 0;
-        S.base = S.top = NULL;
+        S.base = S.top = nullptr;
     }
     return OK;
 }
@@ -64,8 +64,10 @@ Status Pop(Sqstack& S, SElemType& e) {
 }
 
 // 取栈顶元素
-SElemType GetTop(Sqstack S) {
+Status GetTop(Sqstack S, SElemType& e) {
     // 或：if (!IsEmpty(S))
-    if (S.top != S.base)
-        return *(S.top - 1);
+    if (S.top == S.base)
+        return ERROR;
+    e = *(S.top - 1);
+    return OK;
 }

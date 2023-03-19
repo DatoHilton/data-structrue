@@ -42,7 +42,9 @@ Status DeQueue(SqQueue& Q, QElemType& e) {
 }
 
 // 取循环队列的队头元素
-QElemType GetHead(SqQueue Q) {
-    if (Q.front != Q.rear)  // 队非空
-        return Q.base[Q.front];
+Status GetHead(SqQueue Q, QElemType& e) {
+    if (Q.front == Q.rear)  // 队空
+        return ERROR;
+    e = Q.base[Q.front];
+    return OK;
 }
